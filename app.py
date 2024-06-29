@@ -6,7 +6,7 @@ import streamlit as st
 import os
 import io
 from PIL import Image 
-import  PyPDF2 as pdf
+from  PyPDF2 import PdfReader 
 import google.generativeai as genai
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -17,7 +17,7 @@ def get_gemini_response(input):
     return response.text
 
 def input_pdf_text(uploaded_file):
-    reader=pdf.PdfFileReader(uploaded_file)
+    reader=PdfReader(uploaded_file)
     text=""
     for page in reader(len(reader.pages)):
         page=reader.pages[page]
