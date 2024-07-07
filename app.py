@@ -18,7 +18,7 @@ def get_gemini_response(input):
 
 def input_pdf_text(uploaded_file):
     # Get the file path from the uploaded_file object
-    file_path = uploaded_file.name  # Assuming the name attribute contains the file path
+    file_path = uploaded_file  # Assuming the name attribute contains the file path
     reader = PdfReader(open(file_path, 'rb'))
     text = ""
     for page in reader.pages:
