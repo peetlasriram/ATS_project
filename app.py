@@ -7,7 +7,7 @@ import os
 import io
 from PIL import Image 
 import PyPDF2
-from  PyPDF2 import PdfFileReader 
+from  PyPDF2 import PdfReader 
 import google.generativeai as genai
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -18,7 +18,8 @@ def get_gemini_response(input):
     return response.text
 
 def input_pdf_text(uploaded_file):
-    reader=PdfFileReader(str(uploaded_file))
+ 
+    reader=PdfReader(str(uploaded_file))
     text=""
     for page in reader(len(reader.pages)):
         page=reader.pages[page]
@@ -31,7 +32,7 @@ With a deep learning underastand of tech field ,software engineering, Datascienc
 
 ## Streamlit App
 
-st.title("ATS Resume EXpert")
+st.title("sriram ATS Resume EXpert")
 st.text("improve your resume ATS Tracking System")
 Jd=st.text_area("Paste your Job Discription")
 uploaded_file=st.file_uploader("Upload your resume(PDF)...",type="pdf",help="Please Upload Your resume")
@@ -41,7 +42,7 @@ submit=st.button("Submit")
 
 if submit:
     if uploaded_file is not None:
-        text=input_pdf_text(uploaded_file)
-        response=get_gemini_response(input_prompt)
-        st.subheader(response)
+         text=input_pdf_text(str(uploaded_file))
+         response=get_gemini_response(input_prompt)
+         st.subheader(response)
        
