@@ -7,7 +7,7 @@ import os
 import io
 from PIL import Image 
 import PyPDF2
-from  PyPDF2 import PdfReader 
+from  PyPDF2 import PdfFileReader 
 import google.generativeai as genai
 
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
@@ -18,7 +18,7 @@ def get_gemini_response(input):
     return response.text
 
 def input_pdf_text(uploaded_file):
-    reader=PdfReader(open(uploaded_file))
+    reader=PdfFileReader(open(uploaded_file))
     text=""
     for page in reader(len(reader.pages)):
         page=reader.pages[page]
