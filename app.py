@@ -17,12 +17,12 @@ def get_gemini_response(input):
     return response.text
 
 def input_pdf_text(uploaded_file):
- 
-    reader=PdfReader(open(uploaded_file, 'rb'))
-    text=""
-    for page in reader(len(reader.pages)):
-        page=reader.pages[page]
-        text+=str(page.extract_text())
+    # Get the file path from the uploaded_file object
+    file_path = uploaded_file.name  # Assuming the name attribute contains the file path
+    reader = PdfReader(open(file_path, 'rb'))
+    text = ""
+    for page in reader.pages:
+        text += str(page.extract_text())
     return text
         
 input_prompt = """
