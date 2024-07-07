@@ -18,7 +18,7 @@ def get_gemini_response(input):
     return response.text
 
 def input_pdf_text(uploaded_file):
-    reader=PdfFileReader(open(uploaded_file))
+    reader=PdfFileReader(str(uploaded_file))
     text=""
     for page in reader(len(reader.pages)):
         page=reader.pages[page]
